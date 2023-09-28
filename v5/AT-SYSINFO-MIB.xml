@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2023-09-27T23:19:12Z</date>
+    <groups>
+        <group>
+            <name>Allied Telesis Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Allied Telesis AT-SYSINFO-MIB</template>
+            <name>Allied Telesis AT-SYSINFO-MIB</name>
+            <groups>
+                <group>
+                    <name>Allied Telesis Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>memory</name>
+                </application>
+            </applications>
+            <items>
+                <item>
+                    <name>freeMemory</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>1.3.6.1.4.1.207.8.4.4.3.7.1.0</snmp_oid>
+                    <key>freeMemory</key>
+                    <delay>5m</delay>
+                    <units>％</units>
+                    <applications>
+                        <application>
+                            <name>memory</name>
+                        </application>
+                    </applications>
+                </item>
+            </items>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>CPU</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#CPUSTKID},1.3.6.1.4.1.207.8.4.4.3.3.8.1.1]</snmp_oid>
+                    <key>cpuUtilisationStackTable</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>CPU Utilization (5min avg)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.207.8.4.4.3.3.8.1.8.{#CPUSTKID}</snmp_oid>
+                            <key>cpuUtilisationStackAvgLast5Minutes[IDX={#CPUSTKID}]</key>
+                            <delay>5m</delay>
+                            <units>％</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>StackID={#CPUSTKID} CPU</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>CPU Utilization (1min avg)</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.207.8.4.4.3.3.8.1.4.{#CPUSTKID}</snmp_oid>
+                            <key>cpuUtilisationStackAvgLastMinute[IDX={#CPUSTKID}]</key>
+                            <units>％</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>StackID={#CPUSTKID} CPU</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+</zabbix_export>

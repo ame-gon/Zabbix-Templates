@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2023-09-27T23:18:29Z</date>
+    <groups>
+        <group>
+            <name>Allied Telesis Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Allied Telesis AT-ENVMONv2-MIB</template>
+            <name>Allied Telesis AT-ENVMONv2-MIB</name>
+            <groups>
+                <group>
+                    <name>Allied Telesis Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Fan</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#STKMEMBERID},1.3.6.1.4.1.207.8.4.4.3.12.1.1.1,{#BOARDID},1.3.6.1.4.1.207.8.4.4.3.12.1.1.2,{#FANID},1.3.6.1.4.1.207.8.4.4.3.12.1.1.3,{#FANDESC},1.3.6.1.4.1.207.8.4.4.3.12.1.1.4]</snmp_oid>
+                    <key>atEnvMonv2FanTable</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>FanID={#FANID}: Current Speed</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.207.8.4.4.3.12.1.1.5.{#STKMEMBERID}.{#BOARDID}.{#FANID}</snmp_oid>
+                            <key>atEnvMonv2FanCurrentSpeed[IDX={#FANID}]</key>
+                            <delay>5m</delay>
+                            <units>rpm</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>StackID={#STKMEMBERID} Fan</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>FanID={#FANID}: Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.207.8.4.4.3.12.1.1.7.{#STKMEMBERID}.{#BOARDID}.{#FANID}</snmp_oid>
+                            <key>atEnvMonv2FanStatus[IDX={#FANID}]</key>
+                            <delay>5m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>StackID={#STKMEMBERID} Fan</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <valuemap>
+                                <name>atEnvMonv2FanStatus</name>
+                            </valuemap>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Temperature</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#STKMEMBERID},1.3.6.1.4.1.207.8.4.4.3.12.3.1.1,{#BOARDID},1.3.6.1.4.1.207.8.4.4.3.12.3.1.2,{#TEMPID},1.3.6.1.4.1.207.8.4.4.3.12.3.1.3,{#TEMPDESC},1.3.6.1.4.1.207.8.4.4.3.12.3.1.4]</snmp_oid>
+                    <key>atEnvMonv2TemperatureTable</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Temp ID={#TEMPID}: Current Temperature</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.207.8.4.4.3.12.3.1.5.{#STKMEMBERID}.{#BOARDID}.{#TEMPID}</snmp_oid>
+                            <key>atEnvMonv2TemperatureCurrent[IDX={#TEMPID}]</key>
+                            <delay>5m</delay>
+                            <units>℃</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>StackID={#STKMEMBERID} Temperature</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Temp ID={#TEMPID}: Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>.1.3.6.1.4.1.207.8.4.4.3.12.3.1.7.{#STKMEMBERID}.{#BOARDID}.{#TEMPID}</snmp_oid>
+                            <key>atEnvMonv2TemperatureStatus[IDX={#TEMPID}]</key>
+                            <delay>5m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>StackID={#STKMEMBERID} Temperature</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <valuemap>
+                                <name>atEnvMonv2TemperatureStatus</name>
+                            </valuemap>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Voltage</name>
+                    <type>SNMP_AGENT</type>
+                    <snmp_oid>discovery[{#STKMEMBERID},1.3.6.1.4.1.207.8.4.4.3.12.2.1.1,{#BOARDID},1.3.6.1.4.1.207.8.4.4.3.12.2.1.2,{#VOLTID},1.3.6.1.4.1.207.8.4.4.3.12.2.1.3,{#VOLTDESC},1.3.6.1.4.1.207.8.4.4.3.12.2.1.4]</snmp_oid>
+                    <key>atEnvMonv2VoltageTable</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Volt ID={#VOLTID}: {#VOLTDESC} Status</name>
+                            <type>SNMP_AGENT</type>
+                            <snmp_oid>1.3.6.1.4.1.207.8.4.4.3.12.2.1.8.{#STKMEMBERID}.{#BOARDID}.{#VOLTID}</snmp_oid>
+                            <key>atEnvMonv2VoltageStatus[IDX={#VOLTID}]</key>
+                            <delay>5m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>StackID={#STKMEMBERID} Voltage</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <valuemap>
+                                <name>atEnvMonv2VoltageStatus</name>
+                            </valuemap>
+                        </item_prototype>
+                    </item_prototypes>
+                </discovery_rule>
+            </discovery_rules>
+        </template>
+    </templates>
+    <value_maps>
+        <value_map>
+            <name>atEnvMonv2FanStatus</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>failed</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>good</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>atEnvMonv2TemperatureStatus</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>outOfRange</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>inRange</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+        <value_map>
+            <name>atEnvMonv2VoltageStatus</name>
+            <mappings>
+                <mapping>
+                    <value>1</value>
+                    <newvalue>outOfRange</newvalue>
+                </mapping>
+                <mapping>
+                    <value>2</value>
+                    <newvalue>inRange</newvalue>
+                </mapping>
+            </mappings>
+        </value_map>
+    </value_maps>
+</zabbix_export>
